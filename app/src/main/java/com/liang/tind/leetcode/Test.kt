@@ -1,5 +1,7 @@
 package com.liang.tind.leetcode
 
+import com.liang.tind.leetcode.datastructrue.BTree
+
 /**
  * created by sherlock
  *
@@ -7,21 +9,23 @@ package com.liang.tind.leetcode
  * date 2019/12/14
  */
 class Test {
-    private fun getIndex(arr: IntArray, low: Int, high: Int): Int {
-        var low = low
-        var high = high
-        val temp = arr[low]
-        while (low < high) {
-            while (low < high && arr[high] >= temp) {
-                high--
-            }
-            arr[low] = arr[high]
-            while (low < high && arr[low] <= temp) {
-                low++
-            }
-            arr[high] = arr[low]
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val bTree = BTree<Int, Int>()
+            bTree.put(60, 60)
+            bTree.put(11, 11)
+            bTree.put(21, 21)
+            bTree.put(17, 17)
+            bTree.put(7, 7)
+            bTree.put(3, 3)
+            bTree.put(78, 78)
+            bTree.put(45, 45)
+
+            println(bTree.min())
+            println(bTree.max())
         }
-        arr[low] = temp
-        return low
     }
+
+
 }
