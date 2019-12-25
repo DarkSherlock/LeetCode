@@ -22,7 +22,6 @@ public class LeetCode2 {
 
     public static void main(String[] args) {
         int[] numbers = new int[]{2, 7, 11, 15};
-
         twoSum(numbers, 9);
     }
 

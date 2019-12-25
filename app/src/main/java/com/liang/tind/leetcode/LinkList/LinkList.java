@@ -1,4 +1,6 @@
-package com.liang.tind.leetcode.datastructrue;
+package com.liang.tind.leetcode.LinkList;
+
+import com.liang.tind.leetcode.datastructrue.ListNode;
 
 /**
  * created by sherlock
@@ -68,12 +70,4 @@ public class LinkList {
         return prehead.next;
     }
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 }
