@@ -1,5 +1,7 @@
 package com.liang.tind.leetcode;
 
+import com.liang.tind.leetcode.datastructrue.DoubleLinkList;
+import com.liang.tind.leetcode.datastructrue.SingleLinkList;
 import com.liang.tind.leetcode.datastructrue.Stack;
 
 /**
@@ -23,5 +25,52 @@ public class Test {
         System.out.println(stack.pop());
         System.out.println(stack.size());
 
+    }
+
+    @org.junit.Test
+    public void testSingleLink(){
+        SingleLinkList<Integer> linkList = new SingleLinkList<>();
+        linkList.add(1);
+        linkList.add(2);
+        linkList.add(3);
+        linkList.add(4);
+
+        System.out.println("--------------");
+        System.out.println(linkList.remove(2));
+        System.out.println("--------------");
+        linkList.println();
+        System.out.println("--------------");
+        System.out.println(linkList.removeHead());
+        System.out.println("--------------");
+        linkList.println();
+        System.out.println("--------------");
+        System.out.println(linkList.removeTail());
+        System.out.println("--------------");
+        linkList.println();
+        System.out.println("--------------");
+    }
+
+
+    @org.junit.Test
+    public void testLink(){
+        DoubleLinkList<Integer> linkList = new DoubleLinkList<>();
+        linkList.add(1);
+        linkList.add(2);
+        linkList.add(3);
+        linkList.add(4);
+
+        System.out.println("--------------");
+        System.out.println(linkList.remove(2));
+        System.out.println("--------------");
+        linkList.println();
+        System.out.println("--------------");
+        System.out.println(linkList.removeHead());
+        System.out.println("--------------");
+        linkList.println();
+        System.out.println("--------------");
+        System.out.println(linkList.removeTail());
+        System.out.println("--------------");
+        linkList.println();
+        System.out.println("--------------");
     }
 }

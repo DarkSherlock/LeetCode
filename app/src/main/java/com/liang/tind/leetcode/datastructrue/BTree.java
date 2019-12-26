@@ -1,5 +1,8 @@
 package com.liang.tind.leetcode.datastructrue;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * created by sherlock
  * <p>
@@ -132,6 +135,21 @@ public class BTree<K extends Comparable<K>, V> {
         System.out.println("LDR: " + node.key);
     }
 
+    public void BFS() {
+        if (root == null) return;
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            Node poll = queue.poll();
+            System.out.println(poll.value);
+            if (poll.left != null) {
+                queue.offer(poll.left);
+            }
+            if (poll.right != null) {
+                queue.offer(poll.right);
+            }
+        }
+    }
 
     public int getDepth() {
         return getDepth(root);

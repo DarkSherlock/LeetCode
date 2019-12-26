@@ -24,7 +24,9 @@ public class SingleLinkList<E extends Comparable<E>> {
         if (head == null) {
             head = tail = new Node<>(val);
         } else {
-            head.next = tail = new Node<>(val);
+            Node<E> node = new Node<>(val);
+            tail.next = node;
+            tail = node;
         }
         size++;
     }
@@ -33,55 +35,61 @@ public class SingleLinkList<E extends Comparable<E>> {
         Node<E> node = new Node<>(val);
         node.next = head;
         head = node;
+        size++;
     }
 
     public E removeHead() {
         if (head == null) return null;
-        Node<E> remove = head;
-        if (remove == tail) {
-            tail = null;
-        }
-        head = head.next;
-        size--;
-        return remove.val;
+        E val = head.val;
+        return remove(val) ? val : null;
     }
 
-    public E remove() {
-        Node<E> node = head;
-        if (node == null) return null;
-        if (node == tail) {
-            E val = node.val;
-            head = tail = null;
-            size = 0;
-            return val;
-        }
-
-        while (node.next != tail) {
-            node = node.next;
-        }
-        Node<E> remove = tail;
-        node.next = null;
-        tail = node;
-        size--;
-        return remove.val;
+    public E removeTail() {
+        if (tail == null) return null;
+        E val = tail.val;
+        return remove(val) ? val : null;
     }
 
     public boolean remove(E val) {
         if (head == null) return false;
-        else if (val == head.val){
-            head = head.next;
+        Node<E> pre = null;
+        Node<E> remove = head;
+
+        if (size == 1 && remove.val == val) {
+            head = tail = null;
+            size = 0;
             return true;
         }
-        Node<E> node = head;
-        Node<E> pre = null;
-        while (node != null) {
-            if (node.val == val) {
-                pre.next = node.next;
+
+        while (remove != null) {
+            if (remove.val == val) {
+                if (remove == head) {
+                    head = head.next;
+                } else if (remove == tail) {
+                    pre.next = null;
+                    tail = pre;
+                } else {
+                    pre.next = remove.next;
+                }
+
+                size--;
                 return true;
             }
-            pre = node;
-            node = node.next;
+            pre = remove;
+            remove = remove.next;
         }
+
+        return false;
+    }
+
+    public E head() {
+        if (head == null) return null;
+        else return head.val;
+    }
+
+    public E tail() {
+        if (tail == null) return null;
+        else return tail.val;
     }
 
     public boolean isEmpty() {
@@ -90,5 +98,13 @@ public class SingleLinkList<E extends Comparable<E>> {
 
     public int size() {
         return size;
+    }
+
+    public void println() {
+        Node<E> node = head;
+        while (node != null) {
+            System.out.println(node.val);
+            node = node.next;
+        }
     }
 }
