@@ -124,7 +124,7 @@ public class BTree<K extends Comparable<K>, V> {
     }
 
     /**
-     * 前序遍历: 先左子树 再根节点 再右子树
+     * 后序遍历: 先左子树 再根节点 再右子树
      *
      * @param node
      */
