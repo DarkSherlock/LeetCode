@@ -1,5 +1,10 @@
 package com.liang.tind.leetcode;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author 梁天德
  * @date 2019/12/24 14:51
@@ -40,5 +45,31 @@ public class TestClass {
         }
 
         return A;
+    }
+
+    @Test
+    public void testSelfDividingNumbers() {
+        selfDividingNumbers(1, 22);
+    }
+
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = left; i <= right; i++) {
+            String s = String.valueOf(i);
+            boolean flag = true;
+
+            for (Character num : s.toCharArray()) {
+                if (num == '0' || i % Integer.valueOf(num.toString()) != 0) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                result.add(i);
+            }
+        }
+
+        return result;
     }
 }
