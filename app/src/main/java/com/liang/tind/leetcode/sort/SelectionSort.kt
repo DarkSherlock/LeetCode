@@ -18,7 +18,7 @@ class SelectionSort : Sort() {
          * 从index = 0开始往后遍历，寻找后面数据中最小的数来和当前的数比较交换
          */
         fun selectSort(intArray: IntArray) {
-            for (i in intArray.indices) {
+            for (i in 0 until intArray.size - 1) {
                 var min = i
                 for (j in i + 1 until intArray.size) {
                     if (intArray[min] > intArray[j]) {
