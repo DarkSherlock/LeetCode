@@ -64,6 +64,23 @@ public class BTree<K extends Comparable<K>, V> {
         return node;
     }
 
+    public void remove(K key) {
+        /**
+         * 1.如果是叶子节点，找到parent node，然后判断是左节点还是右节点相应的 parent.left = null or parent.right = null
+         * 2. 删除有2个子节点的节点(target) 从右子树中找到最小的节点，然后把这个节点的value赋值给target，然后删除这个最小的节点
+         * 3. 删除只有一个子节点的节点
+         *  3.1 如果target = root， 那么直接 root = target.left or right（判断target的子节点还是left or right）
+         *  3.2 如果target != root
+         *   3.2.1如果 target只有左节点
+         *      3.2.1.1 target是parent左节点： target.parent.left = target.left
+         *      3.2.1.2 target是parent右节点： target.parent.right = target.left
+
+         *   3.2.2: 如果 target只有右节点
+         *      3.2.2.1 target是parent左节点： target.parent.left = target.right
+         *      3.2.2.2 target是parent右节点： target.parent.right = target.right
+         *
+         */
+    }
     public K min() {
         return min(root).key;
     }

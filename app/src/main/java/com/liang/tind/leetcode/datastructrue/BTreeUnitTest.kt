@@ -5,7 +5,7 @@ package com.liang.tind.leetcode.datastructrue
  *date: 2022/05/07 11:28
  *
  */
-class Test {
+class BTreeUnitTest {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {

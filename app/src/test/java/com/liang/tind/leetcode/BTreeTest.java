@@ -9,7 +9,7 @@ import com.liang.tind.leetcode.datastructrue.Stack;
  * <p>
  * date 2019/12/23
  */
-public class Test {
+public class BTreeTest {
 
     @org.junit.Test
     public void test(){
