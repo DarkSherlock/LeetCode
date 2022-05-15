@@ -1,23 +1,20 @@
 package com.liang.tind.leetcode
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
 
@@ -29,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val info = packageManager.getPackageInfo(packageName, 0)
+        val version = findViewById<TextView>(R.id.version)
         version.text = "version:${info.versionName}, versionCode:${info.versionCode}"
 
         version.setOnClickListener {
