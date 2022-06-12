@@ -1,6 +1,7 @@
 package com.liang.tind.leetcode
 
 import org.junit.Test
+import java.util.*
 
 /**
  *@author: lonnie.liang
@@ -13,13 +14,13 @@ class StringTest {
     @Test
     fun revertStringTest() {
         val s = "abcdefg"
-        revertString(s, 0)
+        println(s.substring(0, 1))
+        println('A'.code)
+        var lenA = 9
+        var lenB = 8
+        while (--lenA > lenB) {
+            println("lenA:$lenA")
+        }
     }
 
-    private fun revertString(s: String, current: Int) {
-        if (current + 1 < s.length) {
-            revertString(s, current + 1)
-        }
-        println(s[current])
-    }
 }

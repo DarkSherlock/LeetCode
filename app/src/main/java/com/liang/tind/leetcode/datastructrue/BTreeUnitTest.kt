@@ -6,6 +6,7 @@ package com.liang.tind.leetcode.datastructrue
  *
  */
 class BTreeUnitTest {
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {

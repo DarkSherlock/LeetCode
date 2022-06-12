@@ -44,7 +44,7 @@ class Sample {
             println("node is null")
             return
         }
-        println(node.value)
+        println(node.`val`)
         node.left?.let { DLR(it) }
         node.right?.let { DLR(it) }
     }
@@ -55,7 +55,7 @@ class Sample {
             return
         }
         node.left?.let { LDR(it) }
-        println(node.value)
+        println(node.`val`)
         node.right?.let { LDR(it) }
     }
 

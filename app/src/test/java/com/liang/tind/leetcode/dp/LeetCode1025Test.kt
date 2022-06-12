@@ -19,5 +19,19 @@ class LeetCode1025Test {
         Assert.assertTrue(test.solution(4))
         Assert.assertTrue(!test.solution(5))
     }
-    
+
+    @Test
+    fun testFn() {
+        Assert.assertEquals(2, fn(3))
+    }
+
+    private fun fn(n: Int): Int {
+        val dp = IntArray(n + 2)
+        dp[1] = 1
+        for (i in 2..n) {
+            dp[i] = dp[i - 1] + dp[i - 2]
+        }
+        return dp[n]
+    }
+
 }

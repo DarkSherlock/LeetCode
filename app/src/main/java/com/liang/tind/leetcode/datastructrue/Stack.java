@@ -25,7 +25,7 @@ public class Stack<E extends Comparable<E>> {
         if (head == null) {
             min = val;
         } else {
-            min = val.compareTo(head.val) < 0 ? val : head.val;
+            min = val.compareTo(head.min) < 0 ? val : head.min;
         }
         Node<E> node = new Node<>(min, val);
         node.next = head;

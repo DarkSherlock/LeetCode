@@ -60,7 +60,7 @@ public class LeetCode437 {
         if (node == null) {
             return;
         } else {
-            sum -= node.value;
+            sum -= node.val;
             if (sum == 0) {
                 count++;
             }

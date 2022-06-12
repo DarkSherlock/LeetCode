@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
                 install(this)
             }
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
