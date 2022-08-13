@@ -34,11 +34,10 @@ class LeetCode118 {
         answer.add(listOf(1, 1))
         if (numRows == 2) return answer
 
-        for (i in 3..numRows) {
+        for (i in 2 until numRows) {
             val row = mutableListOf(1)
-            for (j in 1 until i - 1) {
-                // 第一个-1是想获取上一行的，第二个-1 是因为下标是从1开始算的而answer是从0开始计算
-                row.add((answer[i - 1 - 1][j - 1] + answer[i - 1 - 1][j]))
+            for (j in 1 until i) {
+                row.add((answer[i - 1][j - 1] + answer[i - 1][j]))
             }
             row.add(1)
             answer.add(row)

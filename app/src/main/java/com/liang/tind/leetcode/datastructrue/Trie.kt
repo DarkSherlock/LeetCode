@@ -20,7 +20,7 @@ class Trie {
             }
             node = node.children[index]!!
         }
-        isEnd = true
+        node.isEnd = true
     }
 
     fun search(word: String): Boolean {

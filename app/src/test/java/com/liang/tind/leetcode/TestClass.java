@@ -30,8 +30,6 @@ public class TestClass {
                 aChar = (char) (aChar + 32);
             }
         }
-
-        System.out.println(s);
     }
 
     public int[][] flipAndInvertImage(int[][] A) {
