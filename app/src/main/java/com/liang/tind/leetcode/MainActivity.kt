@@ -1,11 +1,9 @@
 package com.liang.tind.leetcode
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -13,16 +11,14 @@ import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
-    var haveInstallPermission = false
+    private var haveInstallPermission = false
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,14 +42,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private val REQUEST_CODE = 100
 
     //  跳转到 设置界面去 开启权限
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private fun startInstallPermissionSettingActivity() {
         //注意这个是8.0新API
-        val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
+        val packageURI = Uri.parse("package:$packageName")
+        val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivityForResult(intent, REQUEST_CODE)
     }
@@ -66,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             if (haveInstallPermission) {
                 install(this)
             } else {
-               Toast.makeText(this,"需要允许应用内程序安装",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "需要允许应用内程序安装", Toast.LENGTH_LONG).show()
             }
         }
     }
