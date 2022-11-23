@@ -9,12 +9,12 @@ public class Stack<E extends Comparable<E>> {
     private Node<E> head;
     private int size;
 
-    private class Node<E> {
-        E min;
-        E val;
-        Node<E> next;
+    private static class Node<T> {
+        T min;
+        T val;
+        Node<T> next;
 
-        public Node(E min, E val) {
+        public Node(T min, T val) {
             this.min = min;
             this.val = val;
         }
@@ -23,9 +23,9 @@ public class Stack<E extends Comparable<E>> {
     public void push(E val) {
         E min;
         if (head == null) {
-            min = null;
+            min = val;
         } else {
-            min = val.compareTo(head.val) < 0 ? val : head.val;
+            min = val.compareTo(head.min) < 0 ? val : head.min;
         }
         Node<E> node = new Node<>(min, val);
         node.next = head;

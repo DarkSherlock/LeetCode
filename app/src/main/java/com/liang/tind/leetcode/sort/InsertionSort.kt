@@ -6,6 +6,7 @@ package com.liang.tind.leetcode.sort
  *date 2019/12/10
  */
 class InsertionSort : Sort() {
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {

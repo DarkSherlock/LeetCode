@@ -201,5 +201,15 @@ public class TestExample {
     }
 
 
+    private void revertStringTest() {
+        String s = "abcdefg";
+        revertString(s, 0);
+    }
 
+    private void revertString(String s, int current) {
+        if (current + 1 < s.length()) {
+            revertString(s, current + 1);
+        }
+        System.out.println(s.charAt(current));
+    }
 }

@@ -20,7 +20,7 @@ class MergerSort : Sort() {
         }
 
         fun realMergeSort(low: Int, high: Int, arr: IntArray) {
-            if (arr.isEmpty() || low >= high){
+            if (arr.isEmpty() || low >= high) {
                 return
             }
             val mid = (low + high) / 2
@@ -53,4 +53,5 @@ class MergerSort : Sort() {
         }
 
     }
+
 }

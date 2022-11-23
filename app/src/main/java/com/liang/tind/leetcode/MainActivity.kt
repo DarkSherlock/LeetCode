@@ -10,10 +10,10 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
 
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val info = packageManager.getPackageInfo(packageName, 0)
+        val version = findViewById<TextView>(R.id.version)
         version.text = "version:${info.versionName}, versionCode:${info.versionCode}"
 
         version.setOnClickListener {
@@ -39,7 +40,6 @@ class MainActivity : AppCompatActivity() {
                 install(this)
             }
         }
-
     }
 
     private val REQUEST_CODE = 100

@@ -13,15 +13,15 @@ public class BTree<K extends Comparable<K>, V> {
     private Node root;
 
     private class Node {
-        private K key;
+        private final K key;
         private V value;
         private Node left, right;
-        private int N;//以该节点为根的子树中的结点总数
+        private int n;//以该节点为根的子树中的结点总数
 
-        public Node(K key, V value, int N) {
+        public Node(K key, V value, int n) {
             this.key = key;
             this.value = value;
-            this.N = N;
+            this.n = n;
         }
     }
 
@@ -35,7 +35,7 @@ public class BTree<K extends Comparable<K>, V> {
 
     private int size(Node node) {
         if (node == null) return 0;
-        else return node.N;
+        else return node.n;
     }
 
     public V get(K key) {
@@ -60,10 +60,27 @@ public class BTree<K extends Comparable<K>, V> {
         if (cmp < 0) node.left = put(node.left, key, value);
         else if (cmp > 0) node.right = put(node.right, key, value);
         else node.value = value;
-        node.N = size(node.left) + size(node.right) + 1;
+        node.n = size(node.left) + size(node.right) + 1;
         return node;
     }
 
+    public void remove(K key) {
+        /**
+         * 1.如果是叶子节点，找到parent node，然后判断是左节点还是右节点相应的 parent.left = null or parent.right = null
+         * 2. 删除有2个子节点的节点(target) 从右子树中找到最小的节点，然后把这个节点的value赋值给target，然后删除这个最小的节点
+         * 3. 删除只有一个子节点的节点
+         *  3.1 如果target = root， 那么直接 root = target.left or right（判断target的子节点还是left or right）
+         *  3.2 如果target != root
+         *   3.2.1如果 target只有左节点
+         *      3.2.1.1 target是parent左节点： target.parent.left = target.left
+         *      3.2.1.2 target是parent右节点： target.parent.right = target.left
+
+         *   3.2.2: 如果 target只有右节点
+         *      3.2.2.1 target是parent左节点： target.parent.left = target.right
+         *      3.2.2.2 target是parent右节点： target.parent.right = target.right
+         *
+         */
+    }
     public K min() {
         return min(root).key;
     }
@@ -79,7 +96,7 @@ public class BTree<K extends Comparable<K>, V> {
 
     private Node max(Node node) {
         if (node.right == null) return node;
-        return min(node.right);
+        return max(node.right);
     }
 
     public K floor(K key) {
@@ -99,14 +116,26 @@ public class BTree<K extends Comparable<K>, V> {
         else return node;
     }
 
+    public void DLR() {
+        DLR(root);
+    }
+
+    public void LDR() {
+        LDR(root);
+    }
+
+    public void LRD() {
+        LRD(root);
+    }
+
     /**
-     * 前序遍历: 先左子树 再根节点 再右子树
+     * 前序遍历: 先根节点 再左子树 再右子树
      *
      * @param node
      */
-    public void DLR(Node node) {
+    private void DLR(Node node) {
         if (node == null) return;
-        System.out.println("LDR: " + node.key);
+        System.out.println("DLR: " + node.key);
         DLR(node.left);
         DLR(node.right);
     }
@@ -116,7 +145,7 @@ public class BTree<K extends Comparable<K>, V> {
      *
      * @param node
      */
-    public void LDR(Node node) {
+    private void LDR(Node node) {
         if (node == null) return;
         LDR(node.left);
         System.out.println("LDR: " + node.key);
@@ -124,17 +153,20 @@ public class BTree<K extends Comparable<K>, V> {
     }
 
     /**
-     * 后序遍历: 先左子树 再根节点 再右子树
+     * 后序遍历: 先右子树 再根节点 再左子树
      *
      * @param node
      */
-    public void LRD(Node node) {
+    private void LRD(Node node) {
         if (node == null) return;
         LRD(node.left);
         LRD(node.right);
-        System.out.println("LDR: " + node.key);
+        System.out.println("LRD: " + node.key);
     }
 
+    /**
+     * Breadth First Search 广度优先搜索
+     */
     public void BFS() {
         if (root == null) return;
         Queue<Node> queue = new ArrayDeque<>();
@@ -155,10 +187,10 @@ public class BTree<K extends Comparable<K>, V> {
         return getDepth(root);
     }
 
-    private int getDepth(Node root) {
-        if (root == null) return 0;
+    private int getDepth(Node node) {
+        if (node == null) return 0;
         else {
-            return (Math.max(getDepth(root.left), getDepth(root.right)) + 1);
+            return (Math.max(getDepth(node.left), getDepth(node.right)) + 1);
         }
     }
 }
