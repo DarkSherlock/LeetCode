@@ -34,19 +34,66 @@ class BTreeUnitTest {
 
             println("min:${bTree.min()}")
             println("max:${bTree.max()}")
-            println("depth:${bTree.depth}")
+            println("max depth:${bTree.maxDepth}")
+            println("min depth:${bTree.minDepth}")
 
             println("前序遍历：")
             bTree.DLR()
+            println("非递归前序遍历：")
+            bTree.DLR2()
+            println("非递归前序遍历 统一写法：")
+            bTree.DLR3()
 
             println("中序遍历：")
             bTree.LDR()
+            println("非递归中序遍历：")
+            bTree.LDR2()
+            println("非递归中序遍历 统一写法：")
+            bTree.LDR3()
 
             println("后序遍历：")
             bTree.LRD()
+            println("非递归后序遍历 统一写法：")
+            bTree.LRD3()
 
-            println("广度优先遍历：")
+            println("层序遍历 广度优先搜索：")
             bTree.BFS()
+
+            println("层序遍历 广度优先搜索 递归方式：")
+            bTree.BFS2()
+
+            bTree.remove(11)
+            bTree.remove(12)
+            /**
+             *           60
+             *         /   \
+             *       21    78
+             *      / \    /
+             *     17 25  65
+             *    /
+             *   7
+             *  / \
+             * 3   8
+             */
+            println("after remove 11 层序遍历 广度优先搜索 递归方式：")
+            bTree.BFS2()
+
+            bTree.remove2(21)
+            /**
+             *           60
+             *         /   \
+             *       25    78
+             *      /     /
+             *     17    65
+             *    /
+             *   7
+             *  / \
+             * 3   8
+             */
+            println("after remove21, 层序遍历 广度优先搜索 递归方式：")
+            bTree.BFS2()
         }
     }
+
+    
 }

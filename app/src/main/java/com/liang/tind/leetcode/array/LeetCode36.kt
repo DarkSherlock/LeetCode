@@ -45,9 +45,7 @@ class LeetCode36 {
                 }
             }
         }
-
         return true
     }
-
 
 }

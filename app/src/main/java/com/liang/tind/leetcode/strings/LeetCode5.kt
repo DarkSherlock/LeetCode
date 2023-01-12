@@ -13,58 +13,29 @@ class LeetCode5 {
 
 
     fun solution(s: String): String {
-        if (s.length < 2) {
-            return s
+        //参考https://leetcode.cn/problems/palindromic-substrings/
+        val n = s.length
+        val dp = Array(n) {
+            BooleanArray(n)
         }
+        // dp[i][j]代表[i,j]的这一个字符串是否是回文串,通过2个foreach统计出所有情况.
+        // 这里dp不能代表回文串个数,因为确定不了状态转移,比如dp[0]只有一个,dp[1]有多少个并不能转移得到.
+        //dp[i][j]只有当si == sj && (j-i<2 || dp[i+1][j-1]) 的时候为true
         var begin = 0
-        var maxLen = 1
-        val len = s.length
-        // dp[i][j] 代表s[i,j]是否是回文串， 边界条件s[i,i]即长度为1时都是回文串
-        // 转移方程：1。s[i] != s[j] 首尾不相等 即不是回文
-        //         2.1首尾相等的情况下，去掉首尾如果还剩1个字符或者0个字符 那么是
-        //         2.2 首尾相等的情况下 还剩多个字符，那么 dp[i][j] = dp[i+1][j-1]
-
-        val dp = Array(len) {
-            BooleanArray(len)
-        }
-
-        for (i in 0 until len) {
-            // 边界条件s[i,i]即长度为1时都是回文串
-            dp[i][i] = true
-        }
-
-        //开始递推，枚举所有长度情况，长度为2，长度为3 。。。 长度为len的子串
-        for (L in 2..len) {
-            // i为左边界
-            for (i in 0 until len) {
-                // L= j + 1 - i, 这里s[i,j] j是闭区间所以要+1，s[0,1]情况下j = L-1+i = 2-1+0 = 1
-                val j = L - 1 + i
-                if (j >= len) {
-                    // 右边界超过的话 就结束这个长度的遍历
-                    break
-                }
-
-                dp[i][j] = if (s[i] != s[j]) {
-                    false
-                } else {
-                    if (j - i < 3) {
-                        // 首尾相等的情况下，去掉首尾如果还剩1个字符或者0个字符 那么是
-                        true
-                    } else {
-                        // 2.2 首尾相等的情况下 还剩多个字符，那取决于子串是否是
-                        dp[i + 1][j - 1]
+        var end = 1
+        for (j in 0 until n) {
+            for (i in 0..j) {
+                if (s[i] == s[j] && (j - i < 2 || dp[i + 1][j - 1])) {
+                    dp[i][j] = true
+                    if(j+1-i > end - begin) {
+                        begin = i
+                        end = j+1
                     }
-                }
-
-                // 更新maxLen
-                if (dp[i][j] && L > maxLen) {
-                    maxLen = L
-                    begin = i
                 }
             }
         }
 
-        return s.substring(begin, maxLen + begin)
+        return s.substring(begin, end)
     }
 
     fun setZeroes(matrix: Array<IntArray>): Unit {
@@ -74,22 +45,43 @@ class LeetCode5 {
         val n = matrix[0].size
         val row = BooleanArray(m)
         val col = BooleanArray(n)
-        for(i in 0 until m) {
-            for(j in 0 until n) {
-                if(matrix[i][j] == 0) {
+        for (i in 0 until m) {
+            for (j in 0 until n) {
+                if (matrix[i][j] == 0) {
                     row[i] = true
                     col[j] = true
                 }
             }
         }
 
-        for(i in 0 until m) {
-            for(j in 0 until n) {
-                if(row[i] || col[j] ) {
+        for (i in 0 until m) {
+            for (j in 0 until n) {
+                if (row[i] || col[j]) {
                     matrix[i][j] = 0
                 }
             }
         }
 
+    }
+
+    fun countSubstrings(s: String): Int {
+        val n = s.length
+        val dp = Array(n) {
+            BooleanArray(n)
+        }
+        // dp[i][j]代表[i,j]的这一个字符串是否是回文串,通过2个foreach统计出所有情况.
+        // 这里dp不能代表回文串个数,因为确定不了状态转移,比如dp[0]只有一个,dp[1]有多少个并不能转移得到.
+        //dp[i][j]只有当si == sj && (j-i<2 || dp[i+1][j-1]) 的时候为true
+        var count = 0
+        for (j in 0 until n) {
+            for (i in 0..j) {
+                if (s[i] == s[j] && (j - i < 2 || dp[i + 1][j - 1])) {
+                    dp[i][j] = true
+                    count++
+                }
+            }
+        }
+
+        return count
     }
 }

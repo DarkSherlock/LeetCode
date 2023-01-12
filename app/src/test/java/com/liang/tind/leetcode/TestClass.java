@@ -1,9 +1,13 @@
 package com.liang.tind.leetcode;
 
+import com.liang.tind.leetcode.datastructrue.ListNode;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * @author 梁天德
@@ -25,11 +29,34 @@ public class TestClass {
 //        System.out.println(1^4);
 //        System.out.println(5^4);
 
-        for (char aChar : chars) {
-            if (aChar >= 65 && aChar <= 90) {
-                aChar = (char) (aChar + 32);
+        for (int i = 0; i < chars.length; i++) {
+            // lower
+            if (chars[i] >= 65 && chars[i] <= 90) {
+                chars[i] = (char) (chars[i] + 32);
             }
         }
+
+        int[] arr = new int[]{3,2,5,1,4};
+        PriorityQueue<Integer> pq1 = new PriorityQueue<>();
+        PriorityQueue<Integer> pq2 = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2-o1;
+            }
+        });
+        for (int i : arr) {
+            pq1.offer(i);
+            pq2.offer(i);
+        }
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            sb1.append(pq1.poll().toString());
+            sb2.append(pq2.poll().toString());
+        }
+        System.out.println("小顶堆:"+sb1.toString());
+        System.out.println("大顶堆:"+sb2.toString());
+
     }
 
     public int[][] flipAndInvertImage(int[][] A) {
@@ -57,7 +84,7 @@ public class TestClass {
             boolean flag = true;
 
             for (Character num : s.toCharArray()) {
-                if (num == '0' || i % Integer.valueOf(num.toString()) != 0) {
+                if (num == '0' || i % Integer.parseInt(num.toString()) != 0) {
                     flag = false;
                     break;
                 }
@@ -84,6 +111,11 @@ public class TestClass {
             n >>>= 1;
         }
         return rev;
-
     }
+
+    public boolean repeatedSubstringPattern(String s) {
+        return (s + s).indexOf(s, 1) != s.length();
+    }
+
+
 }

@@ -16,7 +16,7 @@ import kotlin.collections.ArrayList
  */
 class LeetCode131 {
     val res = mutableListOf<List<String>>()
-    val list= LinkedList<String>()
+    val list = LinkedList<String>()
     fun solution(s: String): List<List<String>> {
         // "google", start =0,可以分割出g, go, goo, goog, googl, google六个字串 选取符合的加入到res中
 
@@ -26,12 +26,14 @@ class LeetCode131 {
 
     private fun dfs(s: String, startIndex: Int) {
         if (startIndex == s.length) {
+            println("startIndex=$startIndex, list=${list.joinToString()}")
             res.add(ArrayList(list))
             return
         }
 
         for (i in startIndex until s.length) {
             val subString = s.substring(startIndex, i + 1)
+            println("subString=$subString, startIndex=$startIndex,i=$i")
             if (check(subString)) {
                 list.add(subString)
                 dfs(s, i + 1)
