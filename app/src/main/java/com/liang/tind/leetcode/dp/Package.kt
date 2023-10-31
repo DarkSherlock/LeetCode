@@ -58,7 +58,7 @@ class Package {
         val dp = IntArray(capacity + 1)
 
         for (i in 1 until weightArray.size) {
-            for (j in 1 .. capacity) {
+            for (j in 1..capacity) {
                 if (j >= weightArray[i]) {
                     dp[j] = Math.max(dp[j], dp[j - weightArray[i]] + valueArray[i])
                 }
@@ -69,4 +69,6 @@ class Package {
 
         return dp[capacity]
     }
+
+
 }

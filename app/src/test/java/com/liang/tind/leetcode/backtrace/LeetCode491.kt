@@ -51,18 +51,14 @@ class LeetCode491 {
         }
         if (start == nums.size) return
 
-        label@for (i in start until nums.size) {
-            if (i > start ){
-                for(j in start until i) {
-                    if (nums[i] == nums[j]) {
-                       continue@label
-                    }
-                }
-            }
+        val used = BooleanArray(201)
+        for (i in start until nums.size) {
+            if (used[nums[i]+100]) continue
             val last = path.lastOrNull()
             if (last != null && nums[i] < last) continue
             println("add=${nums[i]}, start = $start,i=$i")
             path.add(nums[i])
+            used[nums[i]+100] = true
             backtracking(nums, i + 1, path)
             val removed = path.removeAt(path.lastIndex)
             println("removed=$removed, start = $start,i=$i")

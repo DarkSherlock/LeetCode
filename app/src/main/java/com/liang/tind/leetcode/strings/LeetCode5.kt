@@ -34,34 +34,7 @@ class LeetCode5 {
                 }
             }
         }
-
         return s.substring(begin, end)
-    }
-
-    fun setZeroes(matrix: Array<IntArray>): Unit {
-        // 第一次遍历使用两个数组booleanArr row,col分别记录这一行或者列是否需要重置0
-        //。第二次遍历 再去reset to 0
-        val m = matrix.size
-        val n = matrix[0].size
-        val row = BooleanArray(m)
-        val col = BooleanArray(n)
-        for (i in 0 until m) {
-            for (j in 0 until n) {
-                if (matrix[i][j] == 0) {
-                    row[i] = true
-                    col[j] = true
-                }
-            }
-        }
-
-        for (i in 0 until m) {
-            for (j in 0 until n) {
-                if (row[i] || col[j]) {
-                    matrix[i][j] = 0
-                }
-            }
-        }
-
     }
 
     fun countSubstrings(s: String): Int {

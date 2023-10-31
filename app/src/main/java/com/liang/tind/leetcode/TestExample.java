@@ -1,5 +1,7 @@
 package com.liang.tind.leetcode;
 
+import android.util.SparseArray;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.Map;
 public class TestExample {
 
     public int majorityElement(int[] nums) {
+        SparseArray<String > spa = new SparseArray<>();
         Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
             Integer integer = map.get(num);

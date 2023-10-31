@@ -53,7 +53,7 @@ class LeetCodeStock {
 
         var sell = 0
         var buy = Int.MIN_VALUE
-        for (i in 0 until prices.size) {
+        for (i in prices.indices) {
             sell = Math.max(sell, buy + prices[i])
             buy = Math.max(buy, -prices[i])
         }
@@ -188,19 +188,4 @@ class LeetCodeStock {
         return dp[prices.size][maxK][0]
     }
 
-    fun rotate(matrix: Array<IntArray>): Unit {
-        val m = matrix.size
-        val n = matrix.firstOrNull()?.size ?: 0
-        for (i in 0 until m / 2) {
-            val a = matrix[i]
-            val b = matrix[m - 1 - i]
-            for (j in 0 until n) {
-                val temp = a[j]
-                a[j] = b[j]
-                b[j] = temp
-            }
-        }
-
-
-    }
 }

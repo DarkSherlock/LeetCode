@@ -310,6 +310,7 @@ public class BTree<K extends Comparable<K>, V> {
                 nodeDeque.push(node);
                 node = node.left;
             } else {
+
                 node = nodeDeque.pop();
                 // pre root
                 System.out.println("LDR:" + node);
